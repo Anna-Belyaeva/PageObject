@@ -1,11 +1,12 @@
 package ru.netology.test;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.page.DashboardPage;
 import ru.netology.page.LoginPage;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataHelper.*;
 import static ru.netology.page.LoginPage.validLogin;
@@ -55,7 +56,7 @@ public class TransferTest {
         var firstCardBalance = dashboardPage.getCardBalance(firstCard);
         var secondCardBalance = dashboardPage.getCardBalance(secondCard);
 
-        var amount = generateValidAmount(firstCardBalance);
+        var amount = generateValidAmount(secondCardBalance);
 
         var firstCardBalanceBeforeTransfer = firstCardBalance + amount;
         var secondCardBalanceBeforeTransfer = secondCardBalance - amount;
@@ -90,4 +91,5 @@ public class TransferTest {
         assertEquals(firstCardBalance, actualFirstCardBalance);
         assertEquals(secondCardBalance,actualSecondCardBalance);
     }
+
 }
